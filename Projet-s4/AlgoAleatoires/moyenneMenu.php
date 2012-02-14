@@ -19,6 +19,7 @@
 				$cpt = $cpt + 1;
 			}
 			$moy = $moy / $cpt;
+			
 			return $moy;
 		}
 	}
