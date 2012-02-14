@@ -1,0 +1,25 @@
+<?php
+	/* Calcule la moyenne des notes des menus proposés par un restaurant
+	* Auteur Julien
+	*/
+	function moyenneMenu($unResto) {
+		$moy = 0;
+		$cpt = 0;
+		//Connexion à la base de données
+		$idConnexion = connexionDB();
+		
+		//On récupère les notes des menus proposé par le restaurant concerné
+		$result = mysql_query("SELECT note FROM menu M, menuProp MP WHERE M.idMenu = MP.idMenu AND idRestaurant = " . $unResto, $idConnexion);
+		if(!$result)
+			die("Requête invalide : " . mysql_error());
+		else {
+			//Simple calcul de moyenne
+			while ($row = mysql_fetch_row()) {
+				$moy = $moy + $row[0];
+				$cpt = $cpt + 1;
+			}
+			$moy = $moy / $cpt;
+			return $moy;
+		}
+	}
+?>
