@@ -1,9 +1,9 @@
 <?php
 
-//retourne le nombre de clients dans un restaurant et prend en paramètre l'ID d'un restaurant
-// et remplit la table repartition qui contient le nombre de riche, moyen riche et pauvre pour le restaurant en paramètre
+/*retourne le nombre de clients dans un restaurant et prend en paramètre l'ID d'un restaurant
+ et remplit la table repartition qui contient le nombre de riche, moyen riche et pauvre pour le restaurant en paramètre
 
-/* Auteur Maxence Xavier Thomas */
+ Auteur Maxence Xavier Thomas */
 
 function nbClientsResto($leRestau)
 {
@@ -28,16 +28,16 @@ $noteTotal=mysql_query('SELECT SUM(note) from restaurant');
 $noteTotalResu=mysql_fetch_row($noteTotal);
 
 //On récupère la note aléatoire
-$noteAleatoire=mysql_query('SELECT aleatoire FROM restaurant WHERE idRestau='.$leRestau);
-$noteAleatoireResu=mysql_fetch_row($noteAleatoire);
+$nbAleatoire=mysql_query('SELECT aleatoire FROM restaurant WHERE idRestau='.$leRestau);
+$nbAleatoireResu=mysql_fetch_row($noteAleatoire);
 
 //On récupère le nombre total aleatoire
 $nbTotalAleatoire=mysql_query('SELECT SUM (aleatoire) From restaurant');
 $nbTotalAleatoireResu=mysql_fetch_row($nbTotalAleatoire);
 
-$riches = ((0.8*$noteRestoResu[0])+(0.2*$noteAleatoireResu[0]))/(($noteTotalResu[0]*0.8)+($nbTotalAleatoireResu[0]*0.2));
-$moyens= ((0.5*$noteRestoResu[0])+(0.5*$noteAleatoireResu[0]))/(($noteTotalResu[0]*0.5)+($nbTotalAleatoireResu[0]*0.5));
-$pauvres= ((0.3*$noteRestoResu[0])+(0.7*$noteAleatoireResu[0]))/(($noteTotalResu[0]*0.3)+($nbTotalAleatoireResu[0]*0.7));
+$riches = ((0.8*$noteRestoResu[0])+(0.2*$nbAleatoireResu[0]))/(($noteTotalResu[0]*0.8)+($nbTotalAleatoireResu[0]*0.2));
+$moyens= ((0.5*$noteRestoResu[0])+(0.5*$nbAleatoireResu[0]))/(($noteTotalResu[0]*0.5)+($nbTotalAleatoireResu[0]*0.5));
+$pauvres= ((0.3*$noteRestoResu[0])+(0.7*$nbAleatoireResu[0]))/(($noteTotalResu[0]*0.3)+($nbTotalAleatoireResu[0]*0.7));
 
 //On récupère le nombre de clients par catégorie pour le restaurant
 $clientRiche=$nbRicheResu[0]*$riches;
