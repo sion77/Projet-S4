@@ -9,7 +9,7 @@
 		
 		//On récupère l'attribut qualitePrestation des salariés du restaurant concerné
 		$requete = mysql_query("SELECT qualitePrestation FROM employe WHERE idRestaurant = " . $unResto, $idConnexion);
-		if (!$result)
+		if (!$requete)
 			die("Requête invalide : " . mysql_error());
 		else {
 			//Simple calcul de moyenne
