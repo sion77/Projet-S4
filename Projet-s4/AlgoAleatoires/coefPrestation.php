@@ -8,7 +8,7 @@
 		$idConnexion = connexionDB();
 		
 		//On récupère l'attribut qualitePrestation des salariés du restaurant concerné
-		$result = mysql_query("SELECT qualitePrestation FROM employe WHERE idRestaurant = " . $unResto, $idConnexion);
+		$requete = mysql_query("SELECT qualitePrestation FROM employe WHERE idRestaurant = " . $unResto, $idConnexion);
 		if (!$result)
 			die("Requête invalide : " . mysql_error());
 		else {
