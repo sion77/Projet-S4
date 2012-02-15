@@ -7,7 +7,7 @@
 		//Le salaire de référence est une variable qui est utilisé pour relativiser le salaire de l'employé par rapport au restaurant dans lequel il travaille.
 		$salaireReference = 0;
 		$moy = 0;
-		$qualitePrestation = 0.7;
+		$qualitePrestation = 0.8;
 		$idConnexion = connexionDB();
 		
 		//Requête qui récupère l'id du restaurant de l'employé
