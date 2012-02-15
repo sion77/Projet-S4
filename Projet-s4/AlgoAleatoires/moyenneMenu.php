@@ -9,8 +9,8 @@
 		$idConnexion = connexionDB();
 		
 		//On récupère les notes des menus proposé par le restaurant concerné
-		$result = mysql_query("SELECT note FROM menu M, menuProp MP WHERE M.idMenu = MP.idMenu AND idRestaurant = " . $unResto, $idConnexion);
-		if(!$result)
+		$requete = mysql_query("SELECT note FROM menu M, menuProp MP WHERE M.idMenu = MP.idMenu AND idRestaurant = " . $unResto, $idConnexion);
+		if(!$requete)
 			die("Requête invalide : " . mysql_error());
 		else {
 			//Simple calcul de moyenne
