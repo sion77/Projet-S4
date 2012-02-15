@@ -1,8 +1,11 @@
 <?php
-//vérifie si période de week end
-function jourWeekEnd($leJour,$leMois){
+
+function jourWeekEnd($date){
+	$weekend=$co->query('SELECT weekend FROM jourSemaine WHERE date='.$date); 
+	$weekendResu=$weekend->fetch();
+
+	return($weekendResu['weekend']);
 	
-	if($leJour%6==0 || $leJour%7==0)	return true;
-	else return false;
+	$weekend->closeCursor();
 }
 ?>
