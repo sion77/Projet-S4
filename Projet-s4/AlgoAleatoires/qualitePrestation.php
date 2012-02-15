@@ -15,7 +15,7 @@
 		//Requête qui récupère le salaire de l'employé
 		$requete2 = mysql_query("SELECT salaire FROM employe WHERE id = " . $unSalarie, $idConnexion);
 		
-		if(!$result)
+		if(!$requete)
 			die("Requête invalide : " . mysql_error());
 		else {
 			//On récupère la moyenne des menus du restaurant
@@ -31,7 +31,7 @@
 			else
 				$salaireReference = 2000;
 		}
-		if(!$result2)
+		if(!$requete)
 			die("Requête invalide : " . mysql_error());
 		else
 			$salaire = mysql_fetch_row($requete2);
