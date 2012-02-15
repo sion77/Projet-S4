@@ -10,7 +10,7 @@
 		$idConnexion = connexionDB();
 		
 		//On récupère la valeur de la dépense en communication du restaurant
-		$result = mysql_query("SELECT publicite FROM restaurant WHERE id = " . $unResto, $idConnexion);
+		$requete = mysql_query("SELECT publicite FROM restaurant WHERE id = " . $unResto, $idConnexion);
 		if (!$result)
 			die("Requête invalide : " . mysql_error());
 		else {
