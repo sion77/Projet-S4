@@ -1,5 +1,5 @@
 <?php
-	/* Calcule le coefficient de la qualité du service dans un restaurant. Cette valeur intervient dans la note du restaurant.
+	/* Calcule le coefficient de qualité du service dans un restaurant. Cette valeur intervient dans la note du restaurant.
 	* Auteur Julien
 	*/
 	function coefPrestation($unResto) {
