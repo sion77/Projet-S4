@@ -14,9 +14,7 @@
 		if (!$result)
 			die("Requête invalide : " . mysql_error());
 		else {
-			while ($row = mysql_fetch_row()){
-				$depenses = $row[0];
-			}
+			$depenses = mysql_fetch_row($requete);
 			
 			//Calculs successifs du coefficient. L'efficacité des dépenses en publicité diminue à chaque intervalle, jusqu'à avoir un effet limité au delà de 50 000 euros.
 			//Premier intervalle : Grande efficacité et on comble facilement le malus.
