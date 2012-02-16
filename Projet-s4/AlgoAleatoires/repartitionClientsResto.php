@@ -1,17 +1,17 @@
 <?php
 
-	//Attribue le nombre de clients dans tous les restaurants
-	function repartitionClientsResto()
-	{
-		//On recupère le nombre de restaurant
-		$nbRestau=nbTotalResto();
+//retourne un tableau d'entier contenant le nombre de clients dans chaque restaurant de la base de données
 
-		for($i=0; $i<$nbRestau; $i++)
-		{
-			nbClientsResto($i);
-		}
+/* Auteur Maxence Xavier Thomas */
 
+function repartitionClientsResto() {	
+	$nbRestau=nbTotalResto(); //On recupère le nombre de restaurant
 
+	for($i=0; $i<$nbRestau; $i++){  // pour chaque ID restaurant
+		$tabNbClientResto[i]=nbClientsResto($i);  // on récupère son nombre de clients via la fonction nbClientsResto
 	}
+	
+	return $tabNbClientResto;  // on retourne le tableau
+}
 
 ?>

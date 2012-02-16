@@ -1,14 +1,14 @@
-<?php 
+<?php
+
+// retourne le nombre total de restaurant présent dans la base de données
+
+/* Auteur Maxence Xavier Thomas */
 
 function nbTotalResto(){
+	$nbTotal=mysql_query('SELECT Count(*) FROM restaurant'); // compte le nombre de restaurant.
+	$nbTotalResu=mysql_fetch_row($nbTotal);
 
-//connexion à la BD
-
-//Requete sql
-$nbTotal= my   ('SELECT Count(*) FROM monRestau');
-
-return $nbTotal;
-
+	return $nbTotalResu[0];
 }
 
 ?>
