@@ -1,4 +1,3 @@
-
 <?php 
 	/* 
 	   Permet d'attribuer la valeur aleatoire du restaurant en paramètre.
@@ -42,4 +41,5 @@
 		
 	}
 		
+?>
 		
