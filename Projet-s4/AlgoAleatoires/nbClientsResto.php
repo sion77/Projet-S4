@@ -31,7 +31,7 @@ $noteAleatoire=mysql_query('SELECT aleatoire FROM restaurant WHERE idRestau='.$l
 $noteAleatoireResu=mysql_fetch_row($noteAleatoire);
 
 //On récupère le nombre total aleatoire
-$nbTotalAleatoire=mysql_query('SELECT SUM (aleatoire) From restaurant');
+$nbTotalAleatoire=mysql_query('SELECT SUM(aleatoire) From restaurant');
 $nbTotalAleatoireResu=mysql_fetch_row($nbTotalAleatoire);
 
 // calcul des repartitions
