@@ -34,6 +34,7 @@ $noteAleatoireResu=mysql_fetch_row($noteAleatoire);
 $nbTotalAleatoire=mysql_query('SELECT SUM (aleatoire) From restaurant');
 $nbTotalAleatoireResu=mysql_fetch_row($nbTotalAleatoire);
 
+// calcul des repartitions
 $riches = ((0.8*$noteRestoResu[0])+(0.2*$noteAleatoireResu[0]))/(($noteTotalResu[0]*0.8)+($nbTotalAleatoireResu[0]*0.2));
 $moyens= ((0.5*$noteRestoResu[0])+(0.5*$noteAleatoireResu[0]))/(($noteTotalResu[0]*0.5)+($nbTotalAleatoireResu[0]*0.5));
 $pauvres= ((0.3*$noteRestoResu[0])+(0.7*$noteAleatoireResu[0]))/(($noteTotalResu[0]*0.3)+($nbTotalAleatoireResu[0]*0.7));
