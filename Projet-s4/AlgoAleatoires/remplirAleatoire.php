@@ -1,25 +1,25 @@
 
-
 <?php 
+	/* 
+	   Permet d'attribuer la valeur aleatoire du restaurant en paramÃ¨tre.
+	   Auteurs Maxence,Thomas,Xavier
+	*/
 
 	function remplirAleatoire($idRestau)
 	{
-		//3 critères
-		$aleatoire;
-		$aleatoireJour;
-		$bonusJourFerie;
+		/*3 critï¿½res: $aleatoire; $aleatoireJour; $bonusJourFerie;
+		*/
 		
-		
-		//Critère aleatoire : random compris entre 0 et 5
+		//Critï¿½re aleatoire : random compris entre 0 et 5
 		$aleatoire = rand(0,5);
 		
-		//On recupère la date
+		//On recupï¿½re la date
 		jourActuel($leJour,$leMois);
 		
 		
 		
-		//On vérifie si le jour est un week end
-		//la Note sera plus élevé en Week end
+		//On vï¿½rifie si le jour est un week end
+		//la Note sera plus ï¿½levï¿½ en Week end
 		if(jourWeekEnd($leJour,$leMois))
 		{
 			//Rand compris entre 2 et 3
@@ -30,7 +30,7 @@
 			$aleatoireJour= rand(0,2);
 			}
 	
-		//Puis on vérifie si le jour est un jour férié
+		//Puis on vï¿½rifie si le jour est un jour fï¿½riï¿½
 		if(jourFerie($leJour,$leMois))	$bonusJourFerie=2;
 		else $bonusJourFerie=0;
 		
