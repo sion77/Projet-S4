@@ -36,7 +36,7 @@
 		$noteTotal=$aleatoire+$aleatoireJour+$bonusJourFerie;
 		
 		//Remplit le tableau
-		$requete =mysql_query('INSERT INTO restaurant(aleatoire) WHERE idRestaurant='.$idRestau.'VALUES('.$noteTotal.')');
+		$requete =mysql_query('INSERT INTO restaurant(aleatoire) WHERE idRestaurant='.$idRestau.' VALUES('.$noteTotal.')');
 		$resultat = mysql_fetch_row($requete);
 		
 	}
