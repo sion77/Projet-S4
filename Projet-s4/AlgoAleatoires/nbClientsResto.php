@@ -1,6 +1,7 @@
 <?php
 
-/* Remplit la table repartition qui contient le nombre de riche, moyen riche et pauvre pour le restaurant en paramètre
+/* 
+  Remplit la table repartition qui contient le nombre de riche, moyen riche et pauvre pour le restaurant en paramètre
   Auteurs Xavier,Maxence,Thomas
 */
 function nbClientsResto($leRestau)
