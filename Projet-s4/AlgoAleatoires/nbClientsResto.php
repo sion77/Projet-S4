@@ -1,9 +1,7 @@
 <?php
 
-//retourne le nombre de clients dans un restaurant et prend en paramètre l'ID d'un restaurant
-// et remplit la table repartition qui contient le nombre de riche, moyen riche et pauvre pour le restaurant en paramètre
-
-
+// remplit la table repartition qui contient le nombre de riche, moyen riche et pauvre pour le restaurant en paramètre
+function nbClientsResto($leRestau)
 {
 
 //recupère le nombre de clients dans la base
