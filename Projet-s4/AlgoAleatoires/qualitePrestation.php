@@ -4,12 +4,22 @@
 	*/
 	function qualitePrestation($unSalarie) {
 		$salaire = 0;
-		$qualitePrestation = 0.5;
+		$moy = 0;
+		$qualitePrestation = 0.8;
 		$idConnexion = connexionDB();
 		
+		//Requête qui récupère l'id du restaurant de l'employé
+		$requete = mysql_query("SELECT idRestaurant FROM employe WHERE id = " . $unSalarie, $idConnexion);
 		//Requête qui récupère le salaire de l'employé
 		$requete2 = mysql_query("SELECT salaire FROM employe WHERE id = " . $unSalarie, $idConnexion);
 		
+		if(!$requete)
+			die("Requête invalide : " . mysql_error());
+		else {
+			//On récupère la moyenne des menus du restaurant
+			$moy = mysql_fetch_row($requete);
+				
+		}
 		if(!$requete2)
 			die("Requête invalide : " . mysql_error());
 		else
@@ -23,7 +33,7 @@
 		$bonusPourboire = rand($minPourboire, $maxPourboire);
 		
 		$qualitePrestation = 0;
-		//On récupère la partie entière du salaire divisé par 100, pour déterminer la puissance n dans la suite 1/2^n.
+		//On récupère la partie entière du salaire divisé par 100, pour déterminer l'exposant n dans la suite 1/x^n.
 		$n = floor($salaire / 100);
 		
 		//Calculs successifs du coefficient. L'efficacité de la prestation du salarié diminue à chaque itération de la boucle.
