@@ -6,7 +6,7 @@
 		//Connexion à la base de données
 		$idConnexion = connexionDB();
 		
-		$requete = "SELECT idMenu FROM menurestaurant WHERE idRestaurant = " . $unResto, $idConnexion);
+		$requete = mysql_query("SELECT idMenu FROM menurestaurant WHERE idRestaurant = " . $unResto, $idConnexion);
 		if(!requete)
 			die("Requête invalide : " . mysql_error());
 		else {
