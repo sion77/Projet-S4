@@ -27,7 +27,7 @@
 				$coefPublicite = pow($depenses / (pow(2, $i) * $depenses), 1.4) + $coefPublicite;
 			}
 			
-			echo $coefPublicite;
+			return $coefPublicite;
 		}
 	}
 ?>
