@@ -17,7 +17,8 @@
 			die("Requête invalide : " . mysql_error());
 		else {
 			//On récupère la moyenne des menus du restaurant
-			$moy = mysql_fetch_row($requete);
+			$leResto = mysql_fetch_row($requete);
+			$moy = moyenneMenu($leResto);
 				
 		}
 		if(!$requete2)
