@@ -1,5 +1,5 @@
 <?php
-	/* Calcule la note sur dix du restaurant en fonction de paramètres comme la publicité, la prestation du service, ou la qualité des menus.
+	/* Met à jour la note sur dix du restaurant en fonction de paramètres comme la publicité, la prestation du service, ou la qualité des menus. Retourne aussi la valeur
 	* Auteur Julien
 	*/
 	function noteResto($unResto) {
@@ -16,6 +16,12 @@
 		//Simple multiplication. La moyenne étant sur dix, elle restera inférieure à dix si elle est multipliée par des coefficients inférieures à 1.
 		$note = $moyenneMenu * $Prestation * $Publicite;
 		
+		//Mise à jour dans la table restaurant
+		$maj = mysql_query("UPDATE restaurant SET noteRestaurant = " . $note . " WHERE idPlatRealisable = " $unResto, $idConnexion);
+		if(!$maj)
+			die("Requête invalide : " . mysql_error());
+				
+		//Retourne la note
 		return note;
 	}
 ?>
