@@ -35,7 +35,7 @@
 		$moy = $moy / 3;
 			
 		//Mise à jour dans la table mesplats
-		$maj = mysql_query("UPDATE menu SET note = " . $moy . " WHERE id = " $unMenu, $idConnexion);
+		$maj = mysql_query("UPDATE menu SET note = " . $moy . " WHERE id = " . $unMenu, $idConnexion);
 		if(!$maj)
 			die("Requête invalide : " . mysql_error());
 				
