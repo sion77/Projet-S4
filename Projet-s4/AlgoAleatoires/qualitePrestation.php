@@ -1,5 +1,5 @@
 <?php
-	/* Met à jour la qualité de la prestation d'un salarie
+	/* Met à jour la qualité de la prestation d'un salarie dans la base de données, et la retourne
 	* Auteur Julien
 	*/
 	function qualitePrestation($unSalarie) {
@@ -46,5 +46,8 @@
 		$maj = mysql_query("UPDATE employe SET qualitePrestation = " . $qualitePrestation . " WHERE id = " $unSalarie, $idConnexion);
 		if(!$maj)
 			die("Requête invalide : " . mysql_error());
+		
+		//Renvoie également la valeur
+		return $qualitePrestation;
 	}
 ?>
