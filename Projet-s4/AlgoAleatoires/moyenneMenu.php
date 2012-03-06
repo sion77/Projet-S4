@@ -9,7 +9,7 @@
 		$idConnexion = connexionDB();
 		
 		//On récupère les notes des menus proposé par le restaurant concerné
-		$requete = mysql_query("SELECT note FROM menu M, menurestaurant MPR WHERE M.idMenu = MR.idMenu AND idRestaurant = " . $unResto, $idConnexion);
+		$requete = mysql_query("SELECT note FROM menu M, menurestaurant MR WHERE M.idMenu = MR.idMenu AND idRestaurant = " . $unResto, $idConnexion);
 		if(!$requete)
 			die("Requête invalide : " . mysql_error());
 		else {
