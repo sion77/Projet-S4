@@ -20,7 +20,7 @@
 			$moy = $moy / $cpt;
 			
 			//Mise à jour dans la table mesplats
-			$maj = mysql_query("UPDATE mesplats SET note = " . $moy . " WHERE idPlatRealisable = " $unPlat, $idConnexion);
+			$maj = mysql_query("UPDATE mesplats SET note = " . $moy . " WHERE idPlatRealisable = " . $unPlat, $idConnexion);
 			if(!$maj)
 				die("Requête invalide : " . mysql_error());
 				
