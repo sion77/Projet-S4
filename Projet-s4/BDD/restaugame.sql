@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: 127.0.0.1
--- Généré le : Mer 22 Février 2012 à 11:13
+-- Généré le : Mar 06 Mars 2012 à 09:43
 -- Version du serveur: 5.5.15
 -- Version de PHP: 5.3.8
 
@@ -130,7 +130,8 @@ INSERT INTO `ingredient` (`idIngredient`, `nomIngredient`, `idTypeIngredient`, `
 (44, 'poire discount', 15, 3, 0.4),
 (45, 'poire bon marchée', 15, 6, 0.6),
 (46, 'banane bio', 16, 9, 1),
-(50, 'banane discount', 16, 3, 0.99);
+(50, 'banane discount', 16, 3, 0.99),
+(51, 'banane bon marchée', 16, 6, 0.99);
 
 -- --------------------------------------------------------
 
@@ -139,35 +140,34 @@ INSERT INTO `ingredient` (`idIngredient`, `nomIngredient`, `idTypeIngredient`, `
 --
 
 CREATE TABLE IF NOT EXISTS `ingredientplat` (
-  `num` int(255) NOT NULL AUTO_INCREMENT,
   `idTypeIngredient` int(255) NOT NULL,
   `idPlat` int(255) NOT NULL,
-  `quantiteIngredient` int(255) NOT NULL,
-  PRIMARY KEY (`num`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+  `quantiteIngredient` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `ingredientplat`
 --
 
-INSERT INTO `ingredientplat` (`num`, `idTypeIngredient`, `idPlat`, `quantiteIngredient`) VALUES
-(1, 1, 1, 1),
-(2, 2, 1, 3),
-(3, 3, 1, 3),
-(4, 4, 2, 1),
-(5, 3, 2, 3),
-(6, 1, 2, 1),
-(7, 5, 3, 1),
-(8, 6, 3, 4),
-(9, 7, 3, 10),
-(10, 8, 4, 2),
-(11, 9, 4, 4),
-(12, 10, 4, 1),
-(13, 11, 5, 1),
-(14, 12, 5, 4),
-(15, 13, 5, 1),
-(16, 14, 6, 5),
-(17, 15, 6, 5);
+INSERT INTO `ingredientplat` (`idTypeIngredient`, `idPlat`, `quantiteIngredient`) VALUES
+(1, 1, 1),
+(2, 1, 3),
+(3, 1, 3),
+(4, 2, 1),
+(3, 2, 3),
+(1, 2, 1),
+(5, 3, 1),
+(6, 3, 4),
+(7, 3, 10),
+(8, 4, 2),
+(9, 4, 4),
+(10, 4, 1),
+(11, 5, 1),
+(12, 5, 4),
+(13, 5, 1),
+(14, 6, 5),
+(15, 6, 5),
+(16, 6, 3);
 
 -- --------------------------------------------------------
 
@@ -210,15 +210,22 @@ CREATE TABLE IF NOT EXISTS `jouractuel` (
 --
 
 CREATE TABLE IF NOT EXISTS `menu` (
-  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `id` int(255) NOT NULL,
   `quantite` int(255) NOT NULL,
   `nomMenu` varchar(200) NOT NULL,
   `entree` int(255) NOT NULL,
   `plat` int(255) NOT NULL,
   `dessert` int(255) NOT NULL,
-  `prix` int(11) NOT NULL,
+  `prix` double NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `menu`
+--
+
+INSERT INTO `menu` (`id`, `quantite`, `nomMenu`, `entree`, `plat`, `dessert`, `prix`) VALUES
+(1, 0, 'Menu découverte', 1, 3, 5, 0);
 
 -- --------------------------------------------------------
 
@@ -231,6 +238,40 @@ CREATE TABLE IF NOT EXISTS `menurestaurant` (
   `idRestaurant` int(255) NOT NULL,
   PRIMARY KEY (`idMenu`,`idRestaurant`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `menurestaurant`
+--
+
+INSERT INTO `menurestaurant` (`idMenu`, `idRestaurant`) VALUES
+(1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `mesingredientplat`
+--
+
+CREATE TABLE IF NOT EXISTS `mesingredientplat` (
+  `idIngredient` int(255) NOT NULL,
+  `idPlat` int(255) NOT NULL,
+  `idMenu` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `mesingredientplat`
+--
+
+INSERT INTO `mesingredientplat` (`idIngredient`, `idPlat`, `idMenu`) VALUES
+(1, 1, 1),
+(5, 1, 1),
+(7, 1, 1),
+(14, 3, 1),
+(17, 3, 1),
+(20, 3, 1),
+(32, 5, 1),
+(35, 5, 1),
+(38, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -277,12 +318,12 @@ CREATE TABLE IF NOT EXISTS `platrealisable` (
 --
 
 INSERT INTO `platrealisable` (`id`, `nomPlat`, `typePlat`, `lienPhoto`) VALUES
-(1, 'salade de chèvre chaud', 1, '/platRealisable/salade de chèvre chaud.jpg'),
+(1, 'salade de chevre chaud', 1, '/platRealisable/salade de chevre chaud.jpg'),
 (2, 'foie gras', 1, '/platRealisable/foie gras.jpg'),
 (3, 'couscous', 2, '/platRealisable/couscous.jpg'),
 (4, 'pizza margarita', 2, '/platRealisable/pizza margarita.jpg'),
 (5, 'mi-cuit chocolat et sa boule vanille', 3, '/platRealisable/mi-cuit chocolat et sa boule vanille.jpg'),
-(6, 'crumble pomme poire', 3, '/platRealisable/crumble pomme poire.jpg');
+(6, 'crumble pomme poire banane', 3, '/platRealisable/crumble pomme poire.jpg');
 
 -- --------------------------------------------------------
 
@@ -315,7 +356,7 @@ CREATE TABLE IF NOT EXISTS `restaurant` (
   `noteRestaurant` int(255) NOT NULL,
   `aleatoire` int(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Contenu de la table `restaurant`
@@ -348,7 +389,7 @@ CREATE TABLE IF NOT EXISTS `typeingredient` (
   `nom` varchar(40) NOT NULL,
   `lienPhoto` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Contenu de la table `typeingredient`
