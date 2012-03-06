@@ -1,7 +1,6 @@
 <?php
 	/* Calcule la moyenne des notes des menus proposés par un restaurant
 	* Auteur Julien
-	* (Devenu inutile depuis le retrait des notes des menus)
 	*/
 	function moyenneMenu($unResto) {
 		$moy = 0;
