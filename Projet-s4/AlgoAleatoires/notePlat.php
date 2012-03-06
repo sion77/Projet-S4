@@ -19,7 +19,10 @@
 			}
 			$moy = $moy / $cpt;
 			
-			return $moy;
+			//Mise à jour dans la table mesplats
+			$maj = mysql_query("UPDATE mesplats SET note = " . $moy . " WHERE idPlatRealisable = " $idPlat, $idConnexion);
+			if(!$maj)
+				die("Requête invalide : " . mysql_error());
 		}
 	}
 ?>
