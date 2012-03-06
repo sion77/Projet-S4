@@ -1,5 +1,5 @@
 <?php
-	/* Calcule la note d'un plat à partir de ses ingrédients
+	/* Met à jour la note d'un plat à partir de ses ingrédients dans la base de données et la renvoie
 	* Auteur Julien
 	*/
 	function notePlat($idPlat) {
@@ -23,6 +23,8 @@
 			$maj = mysql_query("UPDATE mesplats SET note = " . $moy . " WHERE idPlatRealisable = " $idPlat, $idConnexion);
 			if(!$maj)
 				die("Requête invalide : " . mysql_error());
+				
+			return $moy;
 		}
 	}
 ?>
