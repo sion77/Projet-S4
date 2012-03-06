@@ -43,7 +43,7 @@
 		}
 		
 		//Mise à jour dans la table employe
-		$maj = mysql_query("UPDATE employe SET qualitePrestation = " . $qualitePrestation . " WHERE id = " $unSalarie, $idConnexion);
+		$maj = mysql_query("UPDATE employe SET qualitePrestation = " . $qualitePrestation . " WHERE id = " . $unSalarie, $idConnexion);
 		if(!$maj)
 			die("Requête invalide : " . mysql_error());
 		
