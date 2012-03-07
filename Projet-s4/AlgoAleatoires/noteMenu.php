@@ -1,5 +1,5 @@
 <?php
-	/* Créer un menu dans la table menu, lui donne une note et la renvoie
+	/* Crée un menu dans la table menu, lui donne une note et la renvoie
 	* Auteur Julien
 	*/
 	function noteMenu($unMenu) {
