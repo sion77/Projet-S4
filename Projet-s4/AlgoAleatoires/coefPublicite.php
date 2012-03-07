@@ -9,25 +9,34 @@
 		$coefPublicite = 0.3;
 		$depenses = 0;
 		$n = 1;
-		$idConnexion = connexionDB();
 		
-		//On récupère la valeur de la dépense en communication du restaurant
-		$requete = mysql_query("SELECT publicite FROM restaurant WHERE id = " . $unResto, $idConnexion);
-		if (!$requete)
-			die("Requête invalide : " . mysql_error());
+		// Etapes de connexion avec vérifications
+		$idConnexion = mysql_connect('localhost', 'root', '');
+		if(!$idConnexion)
+			echo "Attention : problème de connexion avec le serveur.";
 		else {
-			$depenses = mysql_fetch_row($requete);
-						
-			$coefPublicite = 0;
-			//On récupère la partie entière des dépenses divisée par 100, pour déterminer l'exposant n dans la suite 1/x^n.
-			$n = floor($depenses / 1000);
-			
-			//Calculs successifs du coefficient. L'efficacité des dépenses en publicité diminue à chaque itération de la boucle.
-			for ($i = 1; $i < $n; $i++) {
-				$coefPublicite = pow($depenses / (pow(2, $i) * $depenses), 1.4) + $coefPublicite;
+			$connexionReussie = mysql_select_db('restaugame', $idConnexion);
+			if(!$connexionReussie)
+				echo "Attention : problème de connexion à la base de données.";
+		
+			//On récupère la valeur de la dépense en communication du restaurant
+			$requete = mysql_query("SELECT publicite FROM restaurant WHERE id = " . $unResto, $idConnexion);
+			if (!$requete)
+				die("Requête invalide : " . mysql_error());
+			else {
+				$depenses = mysql_fetch_row($requete);
+							
+				$coefPublicite = 0;
+				//On récupère la partie entière des dépenses divisée par 100, pour déterminer l'exposant n dans la suite 1/x^n.
+				$n = floor($depenses / 1000);
+				
+				//Calculs successifs du coefficient. L'efficacité des dépenses en publicité diminue à chaque itération de la boucle.
+				for ($i = 1; $i < $n; $i++) {
+					$coefPublicite = pow($depenses / (pow(2, $i) * $depenses), 1.4) + $coefPublicite;
+				}
+				
+				return $coefPublicite;
 			}
-			
-			return $coefPublicite;
 		}
 	}
 ?>
