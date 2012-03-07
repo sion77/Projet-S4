@@ -1,5 +1,5 @@
 <?php
-	/* Créer un plat dans la table mesplats, lui donne une note et la renvoie
+	/* Crée un plat dans la table mesplats, lui donne une note et la renvoie
 	* Auteur Julien
 	*/
 	function notePlat($unPlat) {
