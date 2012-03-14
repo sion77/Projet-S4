@@ -17,7 +17,7 @@
 		$note = $moyenneMenu * $Prestation * $Publicite;
 		
 		//Mise à jour dans la table restaurant
-		$maj = mysql_query("UPDATE restaurant SET noteRestaurant = " . $note . " WHERE idPlatRealisable = " $unResto, $idConnexion);
+		$maj = mysql_query("UPDATE restaurant SET noteRestaurant = " . $note . " WHERE id = " $unResto, $idConnexion);
 		if(!$maj)
 			die("Requête invalide : " . mysql_error());
 				
