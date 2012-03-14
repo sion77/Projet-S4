@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: 127.0.0.1
--- Généré le : Mar 06 Mars 2012 à 09:43
+-- Généré le : Mar 13 Mars 2012 à 10:09
 -- Version du serveur: 5.5.15
 -- Version de PHP: 5.3.8
 
@@ -220,13 +220,6 @@ CREATE TABLE IF NOT EXISTS `menu` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Contenu de la table `menu`
---
-
-INSERT INTO `menu` (`id`, `quantite`, `nomMenu`, `entree`, `plat`, `dessert`, `prix`) VALUES
-(1, 0, 'Menu découverte', 1, 3, 5, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -239,13 +232,6 @@ CREATE TABLE IF NOT EXISTS `menurestaurant` (
   PRIMARY KEY (`idMenu`,`idRestaurant`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Contenu de la table `menurestaurant`
---
-
-INSERT INTO `menurestaurant` (`idMenu`, `idRestaurant`) VALUES
-(1, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -257,21 +243,6 @@ CREATE TABLE IF NOT EXISTS `mesingredientplat` (
   `idPlat` int(255) NOT NULL,
   `idMenu` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Contenu de la table `mesingredientplat`
---
-
-INSERT INTO `mesingredientplat` (`idIngredient`, `idPlat`, `idMenu`) VALUES
-(1, 1, 1),
-(5, 1, 1),
-(7, 1, 1),
-(14, 3, 1),
-(17, 3, 1),
-(20, 3, 1),
-(32, 5, 1),
-(35, 5, 1),
-(38, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -377,6 +348,15 @@ CREATE TABLE IF NOT EXISTS `stock` (
   `quantite` int(255) NOT NULL,
   `idRestaurant` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `stock`
+--
+
+INSERT INTO `stock` (`idTypeIngredient`, `idIngredient`, `quantite`, `idRestaurant`) VALUES
+(1, 2, 3, 1),
+(2, 4, 5, 1),
+(15, 45, 2, 1);
 
 -- --------------------------------------------------------
 
