@@ -15,9 +15,9 @@
 			// On récupère la note de l'entrée du menu.
 			$requete1 = mysql_query("SELECT note FROM mesplats MP, menu M WHERE num = entree AND M.id = " . $unMenu, $idConnexion);
 			// On récupère la note du plat principal du menu.
-			$requete1 = mysql_query("SELECT note FROM mesplats MP, menu M WHERE num = plat AND M.id = " . $unMenu, $idConnexion);
+			$requete2 = mysql_query("SELECT note FROM mesplats MP, menu M WHERE num = plat AND M.id = " . $unMenu, $idConnexion);
 			// On récupère la note du dessert du menu.
-			$requete1 = mysql_query("SELECT note FROM mesplats MP, menu M WHERE num = dessert AND M.id = " . $unMenu, $idConnexion);
+			$requete3 = mysql_query("SELECT note FROM mesplats MP, menu M WHERE num = dessert AND M.id = " . $unMenu, $idConnexion);
 			
 			if (!$requete1)
 				die("Requete invalide :" . mysql_error());
@@ -38,7 +38,7 @@
 			}
 			
 			//Simple calcul de moyenne
-			$moy = $noteEntree + $notePlat + $noteDessert;
+			$moy = $noteEntree[0] + $notePlat[0] + $noteDessert[0];
 			$moy = $moy / 3;
 				
 			//Mise à jour dans la table mesplats
