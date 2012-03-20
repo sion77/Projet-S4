@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: 127.0.0.1
--- Généré le : Mar 13 Mars 2012 à 10:09
+-- Généré le : Mer 14 Mars 2012 à 11:35
 -- Version du serveur: 5.5.15
 -- Version de PHP: 5.3.8
 
@@ -35,7 +35,14 @@ CREATE TABLE IF NOT EXISTS `employe` (
   `nom` varchar(200) NOT NULL,
   `prenom` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+
+--
+-- Contenu de la table `employe`
+--
+
+INSERT INTO `employe` (`id`, `idRestaurant`, `salaire`, `qualitePrestation`, `nbJoursEmbauche`, `nom`, `prenom`) VALUES
+(16, 1, 1100, 0, 0, 'Lorenzo', 'Miguel');
 
 -- --------------------------------------------------------
 
@@ -217,8 +224,16 @@ CREATE TABLE IF NOT EXISTS `menu` (
   `plat` int(255) NOT NULL,
   `dessert` int(255) NOT NULL,
   `prix` double NOT NULL,
+  `note` double NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `menu`
+--
+
+INSERT INTO `menu` (`id`, `quantite`, `nomMenu`, `entree`, `plat`, `dessert`, `prix`, `note`) VALUES
+(1, 0, 'Menu découverte', 1, 3, 5, 0, 6);
 
 -- --------------------------------------------------------
 
@@ -232,6 +247,13 @@ CREATE TABLE IF NOT EXISTS `menurestaurant` (
   PRIMARY KEY (`idMenu`,`idRestaurant`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Contenu de la table `menurestaurant`
+--
+
+INSERT INTO `menurestaurant` (`idMenu`, `idRestaurant`) VALUES
+(1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -244,6 +266,51 @@ CREATE TABLE IF NOT EXISTS `mesingredientplat` (
   `idMenu` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Contenu de la table `mesingredientplat`
+--
+
+INSERT INTO `mesingredientplat` (`idIngredient`, `idPlat`, `idMenu`) VALUES
+(1, 1, 1),
+(5, 1, 1),
+(8, 1, 1),
+(14, 3, 1),
+(17, 3, 1),
+(21, 3, 1),
+(32, 5, 1),
+(35, 5, 1),
+(37, 5, 1),
+(32, 5, 1),
+(35, 5, 1),
+(37, 5, 1),
+(32, 5, 1),
+(35, 5, 1),
+(37, 5, 1),
+(32, 5, 1),
+(35, 5, 1),
+(37, 5, 1),
+(32, 5, 1),
+(35, 5, 1),
+(37, 5, 1),
+(31, 5, 1),
+(34, 5, 1),
+(37, 5, 1),
+(40, 6, 1),
+(43, 6, 1),
+(46, 6, 1),
+(42, 6, 1),
+(45, 6, 1),
+(51, 6, 1),
+(42, 6, 1),
+(45, 6, 1),
+(51, 6, 1),
+(42, 6, 1),
+(45, 6, 1),
+(51, 6, 1),
+(32, 5, 1),
+(35, 5, 1),
+(38, 5, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -251,11 +318,29 @@ CREATE TABLE IF NOT EXISTS `mesingredientplat` (
 --
 
 CREATE TABLE IF NOT EXISTS `mesplats` (
-  `num` int(255) NOT NULL,
   `idPlatRealisable` int(255) NOT NULL,
   `note` double NOT NULL,
-  PRIMARY KEY (`num`)
+  `idMenu` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `mesplats`
+--
+
+INSERT INTO `mesplats` (`idPlatRealisable`, `note`, `idMenu`) VALUES
+(1, 6, 1),
+(3, 6, 1),
+(5, 6, 1),
+(5, 6, 1),
+(5, 6, 1),
+(5, 6, 1),
+(5, 6, 1),
+(5, 6, 1),
+(6, 6, 1),
+(6, 6, 1),
+(6, 6, 1),
+(6, 6, 1),
+(5, 6, 1);
 
 -- --------------------------------------------------------
 
