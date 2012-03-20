@@ -1,19 +1,20 @@
 <?php
 	include("_Plat.php");
 	include("_Menu.php");
+	include("tousLesMenusDUnResto.php");
 	
 	/* Retourne un tableau d'objets Menu. Découpage possible en plusieurs fonctions pour plus de lisibilité. 
 	* Auteur Julien
 	*/
 	function getMenus($idResto) {
 		// Déclaration de certaines variables à l'extérieur des blocs
-		unPrix = 0;
-		objEntree = null;
-		objPlat = null;
-		objDessert = null;
+		$unPrix = 0;
+		$objEntree = null;
+		$objPlat = null;
+		$objDessert = null;
 		
 		// Récupération des id des menus d'un resto à travers une fonction précédemment écrite
-		$lesMenus = tousLesMenusDUnResto();
+		$lesMenus = tousLesMenusDUnResto($idResto);
 
 		// Etapes de connexion avec vérifications
 		$idConnexion = mysql_connect('localhost', 'root', '');
@@ -32,7 +33,7 @@
 				if(!$requete)
 					die("Requête invalide : " . mysql_error());
 				else {
-					if($row = mysql_fetch_array($requete) {
+					if($row = mysql_fetch_array($requete)) {
 						$unPrix = $row['prix'];
 						$uneEntree = $row['entree'];
 						$unPlat = $row['plat'];
@@ -124,7 +125,7 @@
 				// Libération des résultats de la requête sur un menu
 				mysql_free_result($requete);
 			}
-			return tabObjMenus;
+			return $tabObjMenus;
 		}
 	}
 ?>
