@@ -8,7 +8,7 @@
 		$salaire = 0;
 		$moy = 0;
 		$qualitePrestation = 0.8;
-		
+
 		// Etapes de connexion avec vérifications
 		$idConnexion = mysql_connect('localhost', 'root', '');
 		if(!$idConnexion)
