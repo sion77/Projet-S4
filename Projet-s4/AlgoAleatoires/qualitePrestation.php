@@ -1,4 +1,6 @@
 <?php
+	include("moyenneMenu.php");
+	
 	/* Met à jour la qualité de la prestation d'un salarie dans la base de données, et la retourne
 	* Auteur Julien
 	*/
