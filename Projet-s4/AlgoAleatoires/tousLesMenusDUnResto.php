@@ -1,22 +1,22 @@
 <?php
-	/* Renvoie un tableau contenant les menus d'un restaurant
+	/* Renvoie un tableau contenant tous les menus proposÃ© par un restaurant
 	* Auteur Julien
 	*/
 	function tousLesMenusDUnResto($unResto) {
-		// Etapes de connexion avec vérifications
+		// Etapes de connexion avec vï¿½rifications
 		$idConnexion = mysql_connect('localhost', 'root', '');
 		if(!$idConnexion)
-			echo "Attention : problème de connexion avec le serveur.";
+			echo "Attention : problï¿½me de connexion avec le serveur.";
 		else {
 			$connexionReussie = mysql_select_db('restaugame', $idConnexion);
 			if(!$connexionReussie)
-				echo "Attention : problème de connexion à la base de données.";
+				echo "Attention : problï¿½me de connexion ï¿½ la base de donnï¿½es.";
 		
 			$requete = mysql_query("SELECT idMenu FROM menurestaurant WHERE idRestaurant = " . $unResto, $idConnexion);
 			if(!$requete)
-				die("Requête invalide : " . mysql_error());
+				die("Requï¿½te invalide : " . mysql_error());
 			else {
-				//Création du tableau
+				//Crï¿½ation du tableau
 				$lesMenus = array();
 				
 				//Remplissage du tableau
