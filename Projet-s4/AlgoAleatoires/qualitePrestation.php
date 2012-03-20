@@ -43,7 +43,7 @@
 			
 			$qualitePrestation = 0;
 			//On récupère la partie entière du salaire divisé par 100, pour déterminer l'exposant n dans la suite 1/x^n.
-			$n = floor($salaire / 100);
+			$n = floor($salaire[0] / 100);
 			
 			//Calculs successifs du coefficient. L'efficacité de la prestation du salarié diminue à chaque itération de la boucle.
 			for ($i = 1; $i < $n; $i++) {
