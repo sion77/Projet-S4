@@ -40,41 +40,41 @@
 						$unDessert = $row['dessert'];
 						
 						// On récupère le nom de l'entrée
-						$requete1 = mysql_query("SELECT nom FROM platrealisable, mesplats WHERE id = idPlatRealisable AND idPlatRealisable = " . $uneEntree, $idConnexion);
+						$requete1 = mysql_query("SELECT nomPlat FROM platrealisable, mesplats WHERE id = idPlatRealisable AND idPlatRealisable = " . $uneEntree, $idConnexion);
 						if(!$requete1)
-							die("Requête invalide : " . mysql_error());
+							die("Requête 1 invalide : " . mysql_error());
 						else {
 							if($row1 = mysql_fetch_array($requete1))
-								$nomEntree = $row1['nom'];
+								$nomEntree = $row1['nomPlat'];
 						}
 						
 						// On récupère le nom du plat principal
-						$requete2 = mysql_query("SELECT nom FROM platrealisable, mesplats WHERE id = idPlatRealisable AND idPlatRealisable = " . $unPlat, $idConnexion);
+						$requete2 = mysql_query("SELECT nomPlat FROM platrealisable, mesplats WHERE id = idPlatRealisable AND idPlatRealisable = " . $unPlat, $idConnexion);
 						if(!$requete2)
-							die("Requête invalide : " . mysql_error());
+							die("Requête 2 invalide : " . mysql_error());
 						else {
 							if($row2 = mysql_fetch_array($requete2))
-								$nomPlat = $row2['nom'];
+								$nomPlat = $row2['nomPlat'];
 						}
 						
 						// On récupère le nom de dessert
-						$requete3 = mysql_query("SELECT nom FROM platrealisable, mesplats WHERE id = idPlatRealisable AND idPlatRealisable = " . $unDessert, $idConnexion);
+						$requete3 = mysql_query("SELECT nomPlat FROM platrealisable, mesplats WHERE id = idPlatRealisable AND idPlatRealisable = " . $unDessert, $idConnexion);
 						if(!$requete3)
-							die("Requête invalide : " . mysql_error());
+							die("Requête 3 invalide : " . mysql_error());
 						else {
 							if($row3 = mysql_fetch_array($requete3))
-								$nomDessert = $row3['nom'];
+								$nomDessert = $row3['nomPlat'];
 						}
 						
 						// Création d'un tableau pour les id des ingrédients de chaque plat et d'un autre pour les quantités entrant en vigueur dans la recette du plat
 						$ingredientsEntree = array();
 						$quantitesEntree = array();
 						// On récupère les ingrédients et les quantités
-						$requeteA = mysql_query("SELECT idIngredient, quantiteIngredient FROM mesingredientplat MIP, ingredientplat IP WHERE MIP.idPlat = IP.idPlat AND idPlat = " . $uneEntree, $idConnexion);
+						$requeteA = mysql_query("SELECT idIngredient, quantiteIngredient FROM mesingredientplat MIP, ingredientplat IP WHERE MIP.idPlat = IP.idPlat AND MIP.idPlat = " . $uneEntree, $idConnexion);
 						if(!$requeteA)
-							die("Requête invalide : " . mysql_error());
+							die("Requête A invalide : " . mysql_error());
 						else {
-							while($rowA = mysql_fetch_array()) {
+							while($rowA = mysql_fetch_array($requeteA)) {
 								$ingredientsEntree[] = $rowA['idIngredient'];
 								$quantitesEntree[] = $rowA['quantiteIngredient'];
 							}
@@ -82,11 +82,11 @@
 						
 						$ingredientsPlat = array();
 						$quantitesPlat = array();
-						$requeteB = mysql_query("SELECT idIngredient, quantiteIngredient FROM mesingredientplat MIP, ingredientplat IP WHERE MIP.idPlat = IP.idPlat AND idPlat = " . $unPlat, $idConnexion);
+						$requeteB = mysql_query("SELECT idIngredient, quantiteIngredient FROM mesingredientplat MIP, ingredientplat IP WHERE MIP.idPlat = IP.idPlat AND MIP.idPlat = " . $unPlat, $idConnexion);
 						if(!$requeteB)
-							die("Requête invalide : " . mysql_error());
+							die("Requête B invalide : " . mysql_error());
 						else {
-							while($rowB = mysql_fetch_array()) {
+							while($rowB = mysql_fetch_array($requeteB)) {
 								$ingredientsPlat[] = $rowB['idIngredient'];
 								$quantitesPlat[] = $rowB['quantiteIngredient'];
 							}
@@ -94,11 +94,11 @@
 						
 						$ingredientsDessert = array();
 						$quantitesDessert = array();
-						$requeteC = mysql_query("SELECT idIngredient, quantiteIngredient FROM mesingredientplat MIP, ingredientplat IP WHERE MIP.idPlat = IP.idPlat AND idPlat = " . $unDessert, $idConnexion);
+						$requeteC = mysql_query("SELECT idIngredient, quantiteIngredient FROM mesingredientplat MIP, ingredientplat IP WHERE MIP.idPlat = IP.idPlat AND MIP.idPlat = " . $unDessert, $idConnexion);
 						if(!$requeteC)
-							die("Requête invalide : " . mysql_error());
+							die("Requête C invalide : " . mysql_error());
 						else {
-							while($rowC = mysql_fetch_array()) {
+							while($rowC = mysql_fetch_array($requeteC)) {
 								$ingredientsDessert[] = $rowC['idIngredient'];
 								$quantitesDessert[] = $rowC['quantiteIngredient'];
 							}
@@ -106,7 +106,7 @@
 						
 						// Initialisation des objets
 						$objEntree = new Plat($uneEntree, $nomEntree, $ingredientsEntree, $quantitesEntree);
-						$objPlat = new Plat($unPlat, $nomPlat, $ingredientsPlat, $quantitePlat);
+						$objPlat = new Plat($unPlat, $nomPlat, $ingredientsPlat, $quantitesPlat);
 						$objDessert = new Plat($unDessert, $nomDessert, $ingredientsDessert, $quantitesDessert);
 						
 						// Libération des résultats des requêtes successives

@@ -13,7 +13,7 @@
 				echo "Attention : problème de connexion à la base de données.";
 		
 			$requete = mysql_query("SELECT idMenu FROM menurestaurant WHERE idRestaurant = " . $unResto, $idConnexion);
-			if(!requete)
+			if(!$requete)
 				die("Requête invalide : " . mysql_error());
 			else {
 				//Création du tableau
